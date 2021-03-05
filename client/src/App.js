@@ -10,7 +10,6 @@ function App() {
     const fileUploadClick = e => {
         const [file] = e.target.files;
         const src = URL.createObjectURL(file);
-        //setImgSrc(src);
         URL.revokeObjectURL(objectURL);
         setObjectURL(src);
     };

@@ -12,13 +12,14 @@ body {
 .canvasWrapper {
     border: 1px solid red;
     width: 1000px;
-    height: 1000px;
+    height: 1200px;
     position: relative;
 }
 
 .thumbnails {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     position: absolute;
     bottom: 0;
     border: 1px solid green;

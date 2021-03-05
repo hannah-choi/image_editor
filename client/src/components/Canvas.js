@@ -41,7 +41,6 @@ export default function Canvas() {
 
     useEffect(() => {
         imageRef.current.src = imagePath;
-
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         contextRef.current = context;
