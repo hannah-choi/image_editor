@@ -1,85 +1,76 @@
 import React, { useRef, useState, useEffect } from "react";
 import filters from "./filters.js";
+import Button from "./Button";
 
-export default function Canvas({ props }) {
-    const canvas = useRef(null);
+export default function Canvas() {
+    const canvasRef = useRef(null);
+    const imageRef = useRef(null);
+    const contextRef = useRef(null);
     const thumbnails = useRef(null);
-    const [image, setImage] = useState(null);
     const [imagePath, setImagePath] = useState("./uploads/default.jpeg");
     const [canvasSize, setCanvasSize] = useState({});
-    const [context, setContext] = useState(null);
 
-    //when the image is loaded
+    const cssFilter = name => {
+        const selectedfilter = filters.find(filter => filter.name === name);
+        const { width, height } = canvasSize;
+        contextRef.current.clearRect(0, 0, width, height);
+        contextRef.current.filter = selectedfilter.filter;
+        contextRef.current.globalCompositeOperation = "source-over";
+        contextRef.current.drawImage(imageRef.current, 0, 0, width, height);
+        selectedfilter.overlays.forEach(overlay => {
+            contextRef.current.globalCompositeOperation = overlay.mixBlendMode;
+            contextRef.current.fillStyle = overlay.backgroundColor;
+            contextRef.current.fillRect(0, 0, width, height);
+        });
+    };
+
+    const imageLoad = () => {
+        const { naturalWidth, naturalHeight } = imageRef.current;
+        setCanvasSize({
+            width: naturalWidth,
+            height: naturalHeight,
+        });
+        contextRef.current.drawImage(
+            imageRef.current,
+            0,
+            0,
+            naturalWidth,
+            naturalHeight
+        );
+    };
+
     useEffect(() => {
-        const previewImg = new Image();
-        previewImg.src = imagePath;
-        previewImg.onload = () => setImage(previewImg);
+        imageRef.current.src = imagePath;
+
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        contextRef.current = context;
     }, []);
-
-    useEffect(() => {
-        if (image && canvas) {
-            const ctx = canvas.current.getContext("2d");
-            const { naturalWidth, naturalHeight } = image;
-            setCanvasSize({
-                width: naturalWidth,
-                height: naturalHeight,
-            });
-            ctx.drawImage(image, 0, 0, naturalWidth, naturalHeight);
-
-            const cssFilter = name => {
-                const selectedfilter = filters.find(
-                    filter => filter.name === name
-                );
-                const { width, height } = canvasSize;
-                ctx.clearRect(0, 0, width, height);
-                ctx.filter = selectedfilter.filter;
-                ctx.globalCompositeOperation = "source-over";
-                ctx.drawImage(image, 0, 0, width, height);
-                selectedfilter.overlays.forEach(overlay => {
-                    ctx.globalCompositeOperation = overlay.mixBlendMode;
-                    ctx.fillStyle = overlay.backgroundColor;
-                    ctx.fillRect(0, 0, width, height);
-                });
-            };
-
-            filters.forEach(filter => {
-                const button = document.createElement("button");
-                button.addEventListener("click", () => cssFilter(filter.name));
-
-                const title = document.createElement("p");
-                title.innerText = filter.name;
-                button.appendChild(title);
-
-                const figure = document.createElement("figure");
-                figure.style.filter = filter.filter;
-                button.appendChild(figure);
-
-                const img = document.createElement("img");
-                img.src = imagePath;
-                figure.appendChild(img);
-
-                filter.overlays.forEach((overlay, index) => {
-                    const div = document.createElement("div");
-                    div.style.backgroundColor = overlay.backgroundColor;
-                    div.style.mixBlendMode = overlay.mixBlendMode;
-                    div.style.zIndex = index + 1;
-                    figure.appendChild(div);
-                });
-
-                thumbnails.current.appendChild(button);
-            });
-        }
-    }, [image, canvas]);
 
     return (
         <div className="canvasWrapper">
-            {imagePath && <img className="previewImg" src={imagePath} />}
+            <img
+                className="previewImage"
+                ref={imageRef}
+                crossOrigin="anonymous"
+                alt="preview"
+                onLoad={imageLoad}
+            />
             <canvas
-                ref={canvas}
+                ref={canvasRef}
                 width={canvasSize.width}
                 height={canvasSize.height}
             />
-            <div ref={thumbnails} className="thumbnails"></div>
+            <div ref={thumbnails} className="thumbnails">
+                {filters.map(filter => (
+                    <Button
+                        key={filter.name}
+                        cssFilter={cssFilter}
+                        filter={filter}
+                        imagePath={imagePath}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
