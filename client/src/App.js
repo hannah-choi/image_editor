@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
-import fileUpload from "express-fileupload";
 import "./App.css";
-import Upload from "./components/Upload";
+import File from "./components/File";
 import Canvas from "./components/Canvas";
 
 function App() {
     const [objectURL, setObjectURL] = useState("");
 
-    const fileUploadClick = e => {
+    const fileUpload = e => {
         const [file] = e.target.files;
         const src = URL.createObjectURL(file);
-        URL.revokeObjectURL(objectURL);
         setObjectURL(src);
+        URL.revokeObjectURL(objectURL);
     };
 
     return (
         <div className="App">
             <h1>Image editor</h1>
-            <div className="preview"></div>
-            <Upload />
-            <Canvas />
+            <File fileUpload={fileUpload} />
+            <Canvas newImagePath={objectURL} />
         </div>
     );
 }

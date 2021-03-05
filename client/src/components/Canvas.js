@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import filters from "./filters.js";
 import Button from "./Button";
 
-export default function Canvas() {
+export default function Canvas({ newImagePath }) {
     const canvasRef = useRef(null);
     const imageRef = useRef(null);
     const contextRef = useRef(null);
@@ -40,11 +40,12 @@ export default function Canvas() {
     };
 
     useEffect(() => {
-        imageRef.current.src = imagePath;
+        setImagePath(newImagePath ? newImagePath : imagePath);
+        imageRef.current.src = newImagePath ? newImagePath : imagePath;
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         contextRef.current = context;
-    }, []);
+    }, [newImagePath]);
 
     return (
         <div className="canvasWrapper">
