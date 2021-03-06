@@ -1,46 +1,93 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     box-sizing: border-box;
     font-family: "Montserrat";
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.App {
+    position: relative;
 }
 
 #imageUpload {
     border: 1px solid gray;
 }
 
-.canvasWrapper {
-    border: 1px solid red;
-    width: 1000px;
-    height: 1200px;
+.wrapper {
+    /* border: 1px solid red; */
     position: relative;
+    width: 1000px;
+    display: flex;
+    /* border: 1px solid magenta; */
+}
+
+.canvasWrapper {
+    width: 70%;
+    position: relative;
+    /* border: 1px solid blue; */
+}
+
+.effectWrapper {
+    padding: 20px;
+    position: relative;
+    width: 30%;
+    /* border: 1px solid cyan; */
 }
 
 .thumbnails {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    position: absolute;
-    bottom: 0;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    justify-content: space-between;
+}
+
+.thumbnails button {
+    width: 30%;
+}
+
+.thumbnails button p {
+    font-size: 0.7rem;
 }
 
 .thumbnails button img {
-    width: 100px;
+    max-width: 100%;
     z-index: 0;
+}
+
+.thumbnails button {
+    outline: 0;
+    border: none;
+    background-color: white;
+}
+
+figure {
+    padding: 0;
+    margin: 0;
 }
 
 .previewImage,
 canvas {
     position: absolute;
     max-width: 100%;
-    top: 50%;
+    top: 20px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 button,
 input {
     padding: 0;
     font-family: inherit;
+}
+
+.duotonePreview {
+    min-height: 80px;
 }

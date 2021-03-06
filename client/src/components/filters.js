@@ -22,16 +22,12 @@ const filters = [
         ],
     },
     {
-        name: "kelvin",
-        filter: "contrast(0.1)",
+        name: "1977",
+        filter: "contrast(1.1) brightness(1.1) saturate(1.3)",
         overlays: [
             {
-                backgroundColor: "#b77d21",
-                mixBlendMode: "overlay",
-            },
-            {
-                backgroundColor: "#382c34",
-                mixBlendMode: "color-dodge",
+                background: "rgba(243, 106, 188, 0.3)",
+                mixBlendMode: "screen",
             },
         ],
     },
@@ -76,20 +72,6 @@ const filters = [
             {
                 backgroundColor: "rgba(58, 3, 57, 0.5)",
                 mixBlendMode: "exclusion",
-            },
-        ],
-    },
-    {
-        name: "lark",
-        filter: "contrast(0.9)",
-        overlays: [
-            {
-                backgroundColor: "#22253f",
-                mixBlendMode: "color-dodge",
-            },
-            {
-                backgroundColor: "rgba(242, 242, 242, 0.8)",
-                mixBlendMode: "darken",
             },
         ],
     },
