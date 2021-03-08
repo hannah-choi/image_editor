@@ -4,6 +4,8 @@ import duotones from "./duotones.js";
 import Button from "./Button";
 import ToneButton from "./ToneButton";
 import Download from "./Download";
+import Slidebar from "./Slidebar";
+import TabButton from "./TabButton.js";
 
 export default function Canvas({ newImagePath }) {
     const canvasRef = useRef(null);
@@ -12,6 +14,53 @@ export default function Canvas({ newImagePath }) {
     const thumbnails = useRef(null);
     const [imagePath, setImagePath] = useState("./uploads/default.jpeg");
     const [canvasSize, setCanvasSize] = useState({});
+    const [active, setActive] = useState("Adjustment");
+
+    const [adjustment, setAdjustment] = useState([
+        {
+            property: "brightness",
+            value: 100,
+        },
+        {
+            property: "contrast",
+            value: 100,
+        },
+        {
+            property: "saturate",
+            value: 100,
+        },
+        {
+            property: "hue-rotate",
+            value: 0,
+        },
+        {
+            property: "sepia",
+            value: 0,
+        },
+    ]);
+
+    const getFilterString = array => {
+        return array
+            .map(
+                item =>
+                    `${item.property}(${parseInt(item.value)}${
+                        item.property !== "hue-rotate" ? "%" : "deg"
+                    })`
+            )
+            .join(" ");
+    };
+
+    const optionChange = (name, newValue) => {
+        setAdjustment(
+            adjustment.map(item =>
+                item.property === name
+                    ? { ...item, value: parseInt(newValue) }
+                    : item
+            )
+        );
+        contextRef.current.drawImage(imageRef.current, 0, 0);
+        contextRef.current.filter = getFilterString(adjustment);
+    };
 
     const downloadImage = () => {
         const link = document.createElement("a");
@@ -20,14 +69,26 @@ export default function Canvas({ newImagePath }) {
         link.click();
     };
 
-    const cssFilter = name => {
-        const selectedfilter = filters.find(filter => filter.name === name);
+    const instaFilter = name => {
+        const selectedFilter = filters.find(filter => filter.name === name);
         const { width, height } = canvasSize;
         contextRef.current.clearRect(0, 0, width, height);
-        contextRef.current.filter = selectedfilter.filter;
+
+        if (selectedFilter.name === "original") {
+            contextRef.current.filter = "none";
+        } else {
+            contextRef.current.filter = getFilterString(selectedFilter.filter);
+            setAdjustment(
+                selectedFilter.filter.map(item =>
+                    item.property === name
+                        ? { ...item, value: item.value }
+                        : item
+                )
+            );
+        }
         contextRef.current.globalCompositeOperation = "source-over";
         contextRef.current.drawImage(imageRef.current, 0, 0, width, height);
-        selectedfilter.overlays.forEach(overlay => {
+        selectedFilter.overlays.forEach(overlay => {
             contextRef.current.globalCompositeOperation = overlay.mixBlendMode;
             contextRef.current.fillStyle = overlay.backgroundColor;
             contextRef.current.fillRect(0, 0, width, height);
@@ -96,13 +157,42 @@ export default function Canvas({ newImagePath }) {
         );
     };
 
+    const buttons = ["Adjustment", "Duotone", "Insta-filter"];
+
+    const adjustmentRender = adjustment.map((option, i) => (
+        <Slidebar key={i} option={option} optionChange={optionChange} />
+    ));
+
+    const duotoneRender = duotones.map(duotone => (
+        <ToneButton
+            key={duotone.name}
+            applyDuotone={applyDuotone}
+            canvasSize={canvasSize}
+            duotone={duotone}
+            imagePath={imagePath}
+        />
+    ));
+
+    const filterRender = filters.map(filter => (
+        <Button
+            key={filter.name}
+            cssFilter={instaFilter}
+            filter={filter}
+            imagePath={imagePath}
+        />
+    ));
+
+    const tabClick = textContent => {
+        setActive(textContent);
+    };
+
     useEffect(() => {
         setImagePath(newImagePath ? newImagePath : imagePath);
         imageRef.current.src = newImagePath ? newImagePath : imagePath;
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         contextRef.current = context;
-    }, [imagePath, newImagePath, contextRef.current]);
+    }, [imagePath, newImagePath]);
 
     return (
         <div className="wrapper">
@@ -123,33 +213,16 @@ export default function Canvas({ newImagePath }) {
             </div>
             <div className="effectWrapper">
                 <h3>Adjust</h3>
-                Brightness <input type="range" />
-                <br />
-                Contrast <input type="range" />
-                <br />
-                Grayscale <input type="range" />
-                <br />
                 <h3>Presets</h3>
-                <button>Insta filters</button>
-                <button>Duotone presets</button>
+                {buttons.map(item => (
+                    <TabButton key={item} name={item} tabClick={tabClick} />
+                ))}
                 <div ref={thumbnails} className="thumbnails">
-                    {duotones.map(duotone => (
-                        <ToneButton
-                            key={duotone.name}
-                            applyDuotone={applyDuotone}
-                            canvasSize={canvasSize}
-                            duotone={duotone}
-                            imagePath={imagePath}
-                        />
-                    ))}
-                    {/* {filters.map(filter => (
-                        <Button
-                            key={filter.name}
-                            cssFilter={cssFilter}
-                            filter={filter}
-                            imagePath={imagePath}
-                        />
-                    ))} */}
+                    {active === "Adjustment"
+                        ? adjustmentRender
+                        : active === "Insta-filter"
+                        ? filterRender
+                        : duotoneRender}
                 </div>
             </div>
         </div>

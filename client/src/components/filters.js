@@ -2,8 +2,13 @@ const filters = [
     { name: "original", filter: "none", overlays: [] },
     {
         name: "aden",
-        filter:
-            "hue-rotate(-20deg) contrast(0.9) saturate(0.85) brightness(1.2)",
+        filter: [
+            { property: "hue-rotate", value: 340 },
+            { property: "contrast", value: 90 },
+            { property: "saturate", value: 85 },
+            { property: "brightness", value: 120 },
+            { property: "sepia", value: 20 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(66, 10, 14, 0.2)",
@@ -13,7 +18,13 @@ const filters = [
     },
     {
         name: "clarendon",
-        filter: "contrast(1.2) saturate(1.35)",
+        filter: [
+            { property: "hue-rotate", value: 0 },
+            { property: "contrast", value: 120 },
+            { property: "saturate", value: 135 },
+            { property: "brightness", value: 100 },
+            { property: "sepia", value: 0 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(127, 187, 227, 0.2)",
@@ -23,7 +34,13 @@ const filters = [
     },
     {
         name: "1977",
-        filter: "contrast(1.1) brightness(1.1) saturate(1.3)",
+        filter: [
+            { property: "contrast", value: 110 },
+            { property: "saturate", value: 130 },
+            { property: "brightness", value: 110 },
+            { property: "hue-rotate", value: 0 },
+            { property: "sepia", value: 0 },
+        ],
         overlays: [
             {
                 background: "rgba(243, 106, 188, 0.3)",
@@ -33,7 +50,13 @@ const filters = [
     },
     {
         name: "nashville",
-        filter: "sepia(0.2) contrast(1.2) brightness(1.05) saturate(1.2)",
+        filter: [
+            { property: "hue-rotate", value: 0 },
+            { property: "contrast", value: 120 },
+            { property: "saturate", value: 120 },
+            { property: "brightness", value: 105 },
+            { property: "sepia", value: 20 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(0, 70, 150, 0.4)",
@@ -47,7 +70,13 @@ const filters = [
     },
     {
         name: "maven",
-        filter: "sepia(0.25) brightness(0.95) contrast(0.95) saturate(1.5)",
+        filter: [
+            { property: "hue-rotate", value: 0 },
+            { property: "contrast", value: 95 },
+            { property: "saturate", value: 150 },
+            { property: "brightness", value: 95 },
+            { property: "sepia", value: 25 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(3, 230, 26, 0.2)",
@@ -57,7 +86,13 @@ const filters = [
     },
     {
         name: "gingham",
-        filter: "brightness(1.05) hue-rotate(-10deg)",
+        filter: [
+            { property: "hue-rotate", value: 350 },
+            { property: "contrast", value: 100 },
+            { property: "saturate", value: 100 },
+            { property: "brightness", value: 105 },
+            { property: "sepia", value: 0 },
+        ],
         overlays: [
             {
                 backgroundColor: "#e6e6fa",
@@ -67,7 +102,13 @@ const filters = [
     },
     {
         name: "valencia",
-        filter: "contrast(1.08) brightness(1.08) sepia(0.08)",
+        filter: [
+            { property: "hue-rotate", value: 0 },
+            { property: "contrast", value: 108 },
+            { property: "saturate", value: 100 },
+            { property: "brightness", value: 108 },
+            { property: "sepia", value: 8 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(58, 3, 57, 0.5)",
@@ -77,7 +118,13 @@ const filters = [
     },
     {
         name: "hudson",
-        filter: "brightness(1.1) hue-rotate(-10deg) sepia(0.3) saturate(1.6)",
+        filter: [
+            { property: "hue-rotate", value: -10 },
+            { property: "contrast", value: 100 },
+            { property: "saturate", value: 150 },
+            { property: "brightness", value: 110 },
+            { property: "sepia", value: 30 },
+        ],
         overlays: [
             {
                 backgroundColor: "rgba(0, 68, 204, 0.3)",
