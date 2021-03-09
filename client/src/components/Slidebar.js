@@ -20,9 +20,6 @@ export default function Slidebar({ option, optionChange }) {
                 onInput={e => {
                     optionChange(e.target.name, e.target.value);
                 }}
-                onChange={e => {
-                    optionChange(e.target.name, e.target.value);
-                }}
             />
             <span className="number">{option.value}</span>
         </div>

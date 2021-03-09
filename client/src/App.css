@@ -43,6 +43,11 @@ body {
     position: relative;
     width: 30%;
     /* border: 1px solid cyan; */
+    position: relative;
+}
+
+.features {
+    position: relative;
 }
 
 .thumbnails {
@@ -50,6 +55,8 @@ body {
     flex-wrap: wrap;
     /* border: 1px solid green; */
     justify-content: space-between;
+    z-index: 1;
+    position: relative;
 }
 
 .thumbnails button {
@@ -113,4 +120,31 @@ input {
 
 .slidebar .number {
     flex-basis: 10%;
+}
+
+.colorButtons {
+    width: 100%;
+}
+
+.colorButtons button {
+    background-color: gray;
+}
+
+.block-picker.colorpicker {
+    position: absolute !important;
+    box-sizing: content-box;
+    border: 1px solid #ddd;
+    z-index: 10;
+}
+
+.block-picker.colorpicker.highlight {
+    left: -10px;
+}
+
+.block-picker.colorpicker.shadow {
+    left: 100px;
+}
+
+.hidden {
+    visibility: hidden !important;
 }

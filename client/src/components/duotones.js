@@ -1,8 +1,8 @@
 const duotones = [
     {
         name: "Original",
-        highlight: null,
-        shadow: null,
+        highlight: "#fff",
+        shadow: "#000",
     },
     {
         name: "Disco 2000",
@@ -16,13 +16,13 @@ const duotones = [
     },
     {
         name: "Touch me",
-        highlight: "#DFEF6F",
-        shadow: "#8C8C8C",
+        highlight: "#ffa1b8",
+        shadow: "#0095cc",
     },
     {
         name: "Ocean Spray",
         highlight: "#F0BCA2",
-        shadow: "#5784B7",
+        shadow: "#325b8a",
     },
     {
         name: "L.A. Woman",
@@ -31,18 +31,18 @@ const duotones = [
     },
     {
         name: "Perfect day",
-        highlight: "#EBB4AC",
-        shadow: "#8B7EAB",
+        highlight: "#ffa89c",
+        shadow: "#4e3982",
     },
     {
         name: "Sonnet",
-        highlight: "#8ED5E0",
-        shadow: "#a87168",
+        highlight: "#06AB6D",
+        shadow: "#231A5E",
     },
     {
         name: "Underwear",
-        highlight: "#7fa9ab",
-        shadow: "#DD6563",
+        highlight: "#8fc4c7",
+        shadow: "#964241",
     },
 ];
 
