@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import filters from "./filters.js";
+import Duotone from "./Duotone";
 import duotones from "./duotones.js";
-import Button from "./Button";
-import ToneButton from "./ToneButton";
+import Adjustment from "./Adjustment";
 import Download from "./Download";
-import Slidebar from "./Slidebar";
 import TabButton from "./TabButton.js";
+import InstaFilter from "./InstaFilter.js";
 
 export default function Canvas({ newImagePath }) {
     const canvasRef = useRef(null);
@@ -14,7 +14,7 @@ export default function Canvas({ newImagePath }) {
     const thumbnails = useRef(null);
     const [imagePath, setImagePath] = useState("./uploads/default.jpeg");
     const [canvasSize, setCanvasSize] = useState({});
-    const [active, setActive] = useState("Adjustment");
+    const [active, setActive] = useState("Duotone");
 
     const [adjustment, setAdjustment] = useState([
         {
@@ -69,7 +69,7 @@ export default function Canvas({ newImagePath }) {
         link.click();
     };
 
-    const instaFilter = name => {
+    const applyInstaFilter = name => {
         const selectedFilter = filters.find(filter => filter.name === name);
         const { width, height } = canvasSize;
         contextRef.current.clearRect(0, 0, width, height);
@@ -159,29 +159,6 @@ export default function Canvas({ newImagePath }) {
 
     const buttons = ["Adjustment", "Duotone", "Insta-filter"];
 
-    const adjustmentRender = adjustment.map((option, i) => (
-        <Slidebar key={i} option={option} optionChange={optionChange} />
-    ));
-
-    const duotoneRender = duotones.map(duotone => (
-        <ToneButton
-            key={duotone.name}
-            applyDuotone={applyDuotone}
-            canvasSize={canvasSize}
-            duotone={duotone}
-            imagePath={imagePath}
-        />
-    ));
-
-    const filterRender = filters.map(filter => (
-        <Button
-            key={filter.name}
-            cssFilter={instaFilter}
-            filter={filter}
-            imagePath={imagePath}
-        />
-    ));
-
     const tabClick = textContent => {
         setActive(textContent);
     };
@@ -218,11 +195,23 @@ export default function Canvas({ newImagePath }) {
                     <TabButton key={item} name={item} tabClick={tabClick} />
                 ))}
                 <div ref={thumbnails} className="thumbnails">
-                    {active === "Adjustment"
-                        ? adjustmentRender
-                        : active === "Insta-filter"
-                        ? filterRender
-                        : duotoneRender}
+                    {active === "Adjustment" ? (
+                        <Adjustment
+                            adjustment={adjustment}
+                            optionChange={optionChange}
+                        />
+                    ) : active === "Insta-filter" ? (
+                        <InstaFilter
+                            imagePath={imagePath}
+                            applyInstaFilter={applyInstaFilter}
+                        />
+                    ) : (
+                        <Duotone
+                            imagePath={imagePath}
+                            canvasSize={canvasSize}
+                            applyDuotone={applyDuotone}
+                        />
+                    )}
                 </div>
             </div>
         </div>

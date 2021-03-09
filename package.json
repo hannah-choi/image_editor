@@ -15,6 +15,7 @@
     "dependencies": {
         "express": "^4.17.1",
         "express-fileupload": "^1.2.1",
+        "react-color": "^2.19.3",
         "styled-components": "^5.2.1"
     },
     "devDependencies": {
