@@ -7,11 +7,17 @@ export default function Duotone({
     applyDuotone,
     canvasSize,
     imagePath,
-    duoColors,
+    duotoneColors,
     duotoneColorChange,
 }) {
     const [highlightPicker, setHighlightPicker] = useState(false);
     const [shadowPicker, setShadowPicker] = useState(false);
+    const [highlightColor, setHighLightColor] = useState(null);
+    const [shadowColor, setShadowColor] = useState(null);
+    // const [selectedColors, setSelectedColors] = useState({
+    //     highlight: null,
+    //     shadow: null,
+    // });
 
     const clickHandle = name => {
         name === "highlight"
@@ -22,36 +28,47 @@ export default function Duotone({
     return (
         <>
             <div className="colorButtons">
-                <button onClick={() => clickHandle("highlight")}>
-                    Highlight Color
-                </button>
-                <button onClick={() => clickHandle("shadow")}>
-                    Shadow Color
-                </button>
+                highlight{" "}
+                <div
+                    className="highlightSwatch swatch"
+                    style={{ backgroundColor: `${duotoneColors.highlight}` }}
+                    onClick={() => clickHandle("highlight")}
+                ></div>
+                shadow{" "}
+                <div
+                    className="shadowSwatch swatch"
+                    style={{ backgroundColor: `${duotoneColors.shadow}` }}
+                    onClick={() => clickHandle("shadow")}
+                ></div>
             </div>
             <BlockPicker
                 className={`colorpicker highlight ${
                     !highlightPicker ? "hidden" : ""
                 }`}
-                color={
-                    duoColors.highlight === null ? "#fff" : duoColors.highlight
-                }
+                color={duotoneColors.highlight}
                 colors={duotones
                     .map(duotone => duotone.highlight)
                     .filter(item => item !== null)}
                 width={106}
-                onChangeComplete={e => duotoneColorChange("highlight", e.hex)}
+                onChange={e => {
+                    setHighLightColor(e.hex);
+                    duotoneColorChange("highlight", e.hex);
+                }}
             />
             <BlockPicker
                 className={`colorpicker shadow ${
                     !shadowPicker ? "hidden" : ""
                 }`}
-                color={duoColors.highlight === null ? "#fff" : duoColors.shadow}
+                // color={duoColors.shadow}
+                color={duotoneColors.shadow}
                 colors={duotones
                     .map(duotone => duotone.shadow)
                     .filter(item => item !== null)}
                 width={106}
-                onChangeComplete={e => duotoneColorChange("shadow", e.hex)}
+                onChange={e => {
+                    setHighLightColor(e.hex);
+                    duotoneColorChange("shadow", e.hex);
+                }}
             />
             <div className="thumbnails">
                 {duotones.map(duotone => (

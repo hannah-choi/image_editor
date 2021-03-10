@@ -15,13 +15,9 @@ export default function Canvas({ newImagePath }) {
     const [imagePath, setImagePath] = useState("./uploads/default.jpeg");
     const [canvasSize, setCanvasSize] = useState({});
     const [active, setActive] = useState("Duotone");
-    const [selectedColors, setSelectedColors] = useState({
-        highlight: "#fff",
-        shadow: "#000",
-    });
-    const [duoColors, setDuoColors] = useState({
-        highlight: null,
-        shadow: null,
+    const [duotoneColors, setDuotoneColors] = useState({
+        highlight: "#000000FF",
+        shadow: "#000000FF",
     });
 
     const [adjustment, setAdjustment] = useState([
@@ -80,7 +76,7 @@ export default function Canvas({ newImagePath }) {
     const applyInstaFilter = name => {
         const selectedFilter = filters.find(filter => filter.name === name);
         setCanvas();
-        contextRef.current.clearRect(0, 0, canvasSize.width, canvasSize.height);
+        clearCanvas();
 
         if (selectedFilter.name === "original") {
             contextRef.current.filter = "none";
@@ -98,46 +94,46 @@ export default function Canvas({ newImagePath }) {
         selectedFilter.overlays.forEach(overlay => {
             contextRef.current.globalCompositeOperation = overlay.mixBlendMode;
             contextRef.current.fillStyle = overlay.backgroundColor;
-            contextRef.current.fillRect(
-                0,
-                0,
-                canvasSize.width,
-                canvasSize.height
-            );
+            canvasFill();
         });
     };
 
     const applyDuotone = name => {
-        const { width, height } = canvasSize;
-        contextRef.current.clearRect(0, 0, width, height);
+        clearCanvas();
         const selectedTone = duotones.find(duotone => duotone.name === name);
         if (selectedTone.name === "Original") {
             imageLoad();
         } else {
             duotoneImageLoad();
-            contextRef.current.globalCompositeOperation = "multiply";
-            contextRef.current.fillStyle = selectedTone.highlight;
-            contextRef.current.fillRect(0, 0, width, height);
-            contextRef.current.globalCompositeOperation = "lighten";
-            contextRef.current.fillStyle = selectedTone.shadow;
-            contextRef.current.fillRect(0, 0, width, height);
-            setSelectedColors({
+            duotoneFilter(selectedTone.highlight, selectedTone.shadow);
+            // duotone_highlight(selectedTone.highlight);
+            // duotone_shadow(selectedTone.shadow);
+            setDuotoneColors({
                 highlight: selectedTone.highlight,
                 shadow: selectedTone.shadow,
             });
         }
     };
 
-    // const applyCustomDuotone = name => {
-    //     const { width, height } = canvasSize;
-    //     contextRef.current.clearRect(0, 0, width, height);
-    //     duotoneImageLoad();
+    const duotoneFilter = (highlight, shadow) => {
+        contextRef.current.globalCompositeOperation = "multiply";
+        contextRef.current.fillStyle = highlight;
+        canvasFill();
+        contextRef.current.globalCompositeOperation = "lighten";
+        contextRef.current.fillStyle = shadow;
+        canvasFill();
+    };
+
+    // const duotone_highlight = highlight => {
     //     contextRef.current.globalCompositeOperation = "multiply";
-    //     contextRef.current.fillStyle = selectedColors.highlight;
-    //     contextRef.current.fillRect(0, 0, width, height);
+    //     contextRef.current.fillStyle = highlight;
+    //     canvasFill();
+    // };
+
+    // const duotone_shadow = shadow => {
     //     contextRef.current.globalCompositeOperation = "lighten";
-    //     contextRef.current.fillStyle = selectedColors.shadow;
-    //     contextRef.current.fillRect(0, 0, width, height);
+    //     contextRef.current.fillStyle = shadow;
+    //     canvasFill();
     // };
 
     const setCanvas = () => {
@@ -145,6 +141,14 @@ export default function Canvas({ newImagePath }) {
             width: imageRef.current.naturalWidth,
             height: imageRef.current.naturalHeight,
         });
+    };
+
+    const canvasFill = () => {
+        contextRef.current.fillRect(0, 0, canvasSize.width, canvasSize.height);
+    };
+
+    const clearCanvas = () => {
+        contextRef.current.clearRect(0, 0, canvasSize.width, canvasSize.height);
     };
 
     const duotoneImageLoad = () => {
@@ -173,13 +177,15 @@ export default function Canvas({ newImagePath }) {
 
     const buttons = ["Adjustment", "Duotone", "Insta-filter"];
 
-    const duotoneColorChange = (name, e) => {
+    const duotoneColorChange = (name, color) => {
+        clearCanvas();
+        duotoneImageLoad();
         if (name === "highlight") {
-            setDuoColors({ ...duoColors, highlight: e.hex });
-            applyDuotone("highlight");
+            setDuotoneColors({ ...duotoneColors, highlight: color });
+            duotoneFilter(duotoneColors.highlight, duotoneColors.shadow);
         } else {
-            setDuoColors({ ...duoColors, shadow: e.hex });
-            applyDuotone("shadow");
+            setDuotoneColors({ ...duotoneColors, shadow: color });
+            duotoneFilter(duotoneColors.highlight, duotoneColors.shadow);
         }
     };
 
@@ -234,8 +240,8 @@ export default function Canvas({ newImagePath }) {
                         <Duotone
                             imagePath={imagePath}
                             canvasSize={canvasSize}
-                            duoColors={duoColors}
                             applyDuotone={applyDuotone}
+                            duotoneColors={duotoneColors}
                             duotoneColorChange={duotoneColorChange}
                         />
                     )}
