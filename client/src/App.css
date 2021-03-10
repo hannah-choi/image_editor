@@ -10,7 +10,6 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     width: 100vw;
 }
@@ -146,11 +145,21 @@ input {
 }
 
 .hidden {
-    visibility: hidden !important;
+    display: none !important;
+}
+
+.colorButtons {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.colorButtons .colorDiv {
+    flex-basis: 50%;
 }
 
 .swatch {
-    width: 50px;
+    width: 120px;
     height: 20px;
     border: 1px solid #ddd;
 }

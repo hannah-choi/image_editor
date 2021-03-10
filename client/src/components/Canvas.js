@@ -16,8 +16,8 @@ export default function Canvas({ newImagePath }) {
     const [canvasSize, setCanvasSize] = useState({});
     const [active, setActive] = useState("Duotone");
     const [duotoneColors, setDuotoneColors] = useState({
-        highlight: "#000000FF",
-        shadow: "#000000FF",
+        highlight: "#fff",
+        shadow: "#fff",
     });
 
     const [adjustment, setAdjustment] = useState([
@@ -77,7 +77,6 @@ export default function Canvas({ newImagePath }) {
         const selectedFilter = filters.find(filter => filter.name === name);
         setCanvas();
         clearCanvas();
-
         if (selectedFilter.name === "original") {
             contextRef.current.filter = "none";
         } else {
@@ -106,8 +105,6 @@ export default function Canvas({ newImagePath }) {
         } else {
             duotoneImageLoad();
             duotoneFilter(selectedTone.highlight, selectedTone.shadow);
-            // duotone_highlight(selectedTone.highlight);
-            // duotone_shadow(selectedTone.shadow);
             setDuotoneColors({
                 highlight: selectedTone.highlight,
                 shadow: selectedTone.shadow,
@@ -123,18 +120,6 @@ export default function Canvas({ newImagePath }) {
         contextRef.current.fillStyle = shadow;
         canvasFill();
     };
-
-    // const duotone_highlight = highlight => {
-    //     contextRef.current.globalCompositeOperation = "multiply";
-    //     contextRef.current.fillStyle = highlight;
-    //     canvasFill();
-    // };
-
-    // const duotone_shadow = shadow => {
-    //     contextRef.current.globalCompositeOperation = "lighten";
-    //     contextRef.current.fillStyle = shadow;
-    //     canvasFill();
-    // };
 
     const setCanvas = () => {
         setCanvasSize({
@@ -178,14 +163,13 @@ export default function Canvas({ newImagePath }) {
     const buttons = ["Adjustment", "Duotone", "Insta-filter"];
 
     const duotoneColorChange = (name, color) => {
-        clearCanvas();
         duotoneImageLoad();
         if (name === "highlight") {
+            duotoneFilter(color, duotoneColors.shadow);
             setDuotoneColors({ ...duotoneColors, highlight: color });
-            duotoneFilter(duotoneColors.highlight, duotoneColors.shadow);
         } else {
+            duotoneFilter(duotoneColors.highlight, color);
             setDuotoneColors({ ...duotoneColors, shadow: color });
-            duotoneFilter(duotoneColors.highlight, duotoneColors.shadow);
         }
     };
 
@@ -220,8 +204,6 @@ export default function Canvas({ newImagePath }) {
                 />
             </div>
             <div className="effectWrapper">
-                <h3>Adjust</h3>
-                <h3>Presets</h3>
                 {buttons.map(item => (
                     <TabButton key={item} name={item} tabClick={tabClick} />
                 ))}

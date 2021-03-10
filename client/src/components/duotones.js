@@ -6,13 +6,13 @@ const duotones = [
     },
     {
         name: "Disco 2000",
-        highlight: "#ffc9c9",
+        highlight: "#ffd4df",
         shadow: "#1624bc",
     },
     {
         name: "Tender",
         highlight: "#ffc04c",
-        shadow: "#c11d7f",
+        shadow: "#960044",
     },
     {
         name: "Touch me",
@@ -31,7 +31,7 @@ const duotones = [
     },
     {
         name: "Perfect day",
-        highlight: "#ffa89c",
+        highlight: "#cbaaf0",
         shadow: "#4e3982",
     },
     {
@@ -41,7 +41,7 @@ const duotones = [
     },
     {
         name: "Underwear",
-        highlight: "#8fc4c7",
+        highlight: "#6bbfbb",
         shadow: "#964241",
     },
 ];

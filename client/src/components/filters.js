@@ -3,10 +3,10 @@ const filters = [
     {
         name: "aden",
         filter: [
-            { property: "hue-rotate", value: 340 },
+            { property: "brightness", value: 120 },
             { property: "contrast", value: 90 },
             { property: "saturate", value: 85 },
-            { property: "brightness", value: 120 },
+            { property: "hue-rotate", value: 340 },
             { property: "sepia", value: 20 },
         ],
         overlays: [
@@ -19,10 +19,10 @@ const filters = [
     {
         name: "clarendon",
         filter: [
-            { property: "hue-rotate", value: 0 },
+            { property: "brightness", value: 100 },
             { property: "contrast", value: 120 },
             { property: "saturate", value: 135 },
-            { property: "brightness", value: 100 },
+            { property: "hue-rotate", value: 0 },
             { property: "sepia", value: 0 },
         ],
         overlays: [
@@ -35,9 +35,9 @@ const filters = [
     {
         name: "1977",
         filter: [
+            { property: "brightness", value: 110 },
             { property: "contrast", value: 110 },
             { property: "saturate", value: 130 },
-            { property: "brightness", value: 110 },
             { property: "hue-rotate", value: 0 },
             { property: "sepia", value: 0 },
         ],
@@ -51,10 +51,10 @@ const filters = [
     {
         name: "nashville",
         filter: [
-            { property: "hue-rotate", value: 0 },
+            { property: "brightness", value: 105 },
             { property: "contrast", value: 120 },
             { property: "saturate", value: 120 },
-            { property: "brightness", value: 105 },
+            { property: "hue-rotate", value: 0 },
             { property: "sepia", value: 20 },
         ],
         overlays: [
@@ -71,10 +71,10 @@ const filters = [
     {
         name: "maven",
         filter: [
-            { property: "hue-rotate", value: 0 },
+            { property: "brightness", value: 95 },
             { property: "contrast", value: 95 },
             { property: "saturate", value: 150 },
-            { property: "brightness", value: 95 },
+            { property: "hue-rotate", value: 0 },
             { property: "sepia", value: 25 },
         ],
         overlays: [
@@ -87,10 +87,10 @@ const filters = [
     {
         name: "gingham",
         filter: [
-            { property: "hue-rotate", value: 350 },
+            { property: "brightness", value: 105 },
             { property: "contrast", value: 100 },
             { property: "saturate", value: 100 },
-            { property: "brightness", value: 105 },
+            { property: "hue-rotate", value: 350 },
             { property: "sepia", value: 0 },
         ],
         overlays: [
@@ -103,10 +103,10 @@ const filters = [
     {
         name: "valencia",
         filter: [
-            { property: "hue-rotate", value: 0 },
+            { property: "brightness", value: 108 },
             { property: "contrast", value: 108 },
             { property: "saturate", value: 100 },
-            { property: "brightness", value: 108 },
+            { property: "hue-rotate", value: 0 },
             { property: "sepia", value: 8 },
         ],
         overlays: [
@@ -119,10 +119,10 @@ const filters = [
     {
         name: "hudson",
         filter: [
-            { property: "hue-rotate", value: -10 },
+            { property: "brightness", value: 110 },
             { property: "contrast", value: 100 },
             { property: "saturate", value: 150 },
-            { property: "brightness", value: 110 },
+            { property: "hue-rotate", value: -10 },
             { property: "sepia", value: 30 },
         ],
         overlays: [
