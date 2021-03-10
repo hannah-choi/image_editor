@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Slidebar({ option, optionChange }) {
+export default function Slidebar({ option, applyChange }) {
     return (
         <div className="slidebar">
             <span className="name">{option.property}</span>
@@ -18,7 +18,7 @@ export default function Slidebar({ option, optionChange }) {
                 }
                 defaultValue={option.value}
                 onInput={e => {
-                    optionChange(e.target.name, e.target.value);
+                    applyChange(e.target.name, e.target.value);
                 }}
             />
             <span className="number">{option.value}</span>

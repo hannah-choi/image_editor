@@ -54,7 +54,7 @@ export default function Canvas({ newImagePath }) {
             .join(" ");
     };
 
-    const optionChange = (name, newValue) => {
+    const applyChange = (name, newValue) => {
         setAdjustment(
             adjustment.map(item =>
                 item.property === name
@@ -64,6 +64,10 @@ export default function Canvas({ newImagePath }) {
         );
         contextRef.current.drawImage(imageRef.current, 0, 0);
         contextRef.current.filter = getFilterString(adjustment);
+        contextRef.current.globalCompositeOperation = "destination-over";
+        console.log(contextRef.current);
+        // canvasFill();
+        imageLoad();
     };
 
     const downloadImage = () => {
@@ -109,6 +113,7 @@ export default function Canvas({ newImagePath }) {
                 highlight: selectedTone.highlight,
                 shadow: selectedTone.shadow,
             });
+            contextRef.current.save();
         }
     };
 
@@ -211,7 +216,7 @@ export default function Canvas({ newImagePath }) {
                     {active === "Adjustment" ? (
                         <Adjustment
                             adjustment={adjustment}
-                            optionChange={optionChange}
+                            applyChange={applyChange}
                         />
                     ) : active === "Insta-filter" ? (
                         <InstaFilter
