@@ -18,23 +18,51 @@ body {
     position: relative;
 }
 
+.button,
+input[type="submit"] {
+    border: 1px solid black;
+    color: black;
+    padding: 6px 8px;
+    font-family: inherit;
+    background-color: #ffffff;
+}
+
 #imageUpload {
     border: 1px solid gray;
 }
 
+#imageUpload::-webkit-file-upload-button {
+    border: 1px solid black;
+    color: black;
+    padding: 5px 8px;
+    font-family: inherit;
+    background-color: #ffffff;
+}
+
 .wrapper {
-    /* border: 1px solid red; */
     position: relative;
     width: 1000px;
-    display: flex;
     /* border: 1px solid magenta; */
 }
 
+.container {
+    /* border: 1px solid green; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .canvasWrapper {
-    min-width: 40%;
-    max-width: 70%;
+    min-width: 50%;
+    max-width: 80%;
     position: relative;
     /* border: 1px solid blue; */
+}
+
+.form {
+    width: 50%;
+    /* border: 1px solid salmon; */
+    margin-bottom: 20px;
 }
 
 .effectWrapper {
@@ -86,7 +114,7 @@ figure {
 canvas {
     position: absolute;
     max-width: 100%;
-    top: 20px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -101,6 +129,10 @@ input {
     min-height: 80px;
 }
 
+h3 {
+    margin: 10px 0;
+}
+
 .slidebar {
     display: flex;
     align-items: center;
@@ -110,19 +142,26 @@ input {
 }
 
 .slidebar .name {
-    flex-basis: 30%;
+    flex-basis: 45%;
 }
 
 .slidebar .input {
-    flex-basis: 50%;
+    flex-basis: 35%;
 }
 
 .slidebar .number {
-    flex-basis: 10%;
+    margin-left: 5px;
+    flex-basis: 15%;
 }
 
 .colorButtons {
     width: 100%;
+}
+
+.effects,
+.colorButtons {
+    width: 100%;
+    margin: 15px 0;
 }
 
 .colorButtons button {
@@ -162,4 +201,36 @@ input {
     width: 120px;
     height: 20px;
     border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.message {
+    visibility: hidden;
+    width: 100%;
+    background-color: #ddd;
+}
+
+.visible {
+    visibility: visible;
+}
+
+button#download {
+    position: absolute;
+    top: -50px;
+    right: -70px;
+}
+
+.tab {
+    padding: 5px 10px;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.tab.active {
+    background-color: black;
+    color: white;
+}
+
+span.colorDivName {
+    margin-bottom: 10px;
 }

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const Message = ({ msg }) => {
+    const msgRef = useRef(null);
+
+    useEffect(() => {
+        msgRef.current.classList.add("visible");
+        setTimeout(() => {
+            msgRef.current.classList.remove("visible");
+        }, 3000);
+    }, [msg]);
+
     return (
-        <div>
+        <div ref={msgRef} className="message">
             {msg}
-            <button>close</button>
         </div>
     );
 };

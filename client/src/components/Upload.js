@@ -9,6 +9,9 @@ export default function Upload({ getFilePath }) {
     const [message, setMessage] = useState("");
 
     const onChange = e => {
+        if (e.target === "undefined") {
+            return;
+        }
         setFile(e.target.files[0]);
         setFilename(e.target.files[0].name);
     };
@@ -16,7 +19,7 @@ export default function Upload({ getFilePath }) {
     async function onSubmitEvent(e) {
         e.preventDefault();
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("image", file);
 
         try {
             const res = await axios.post("/upload", formData, {
@@ -26,34 +29,31 @@ export default function Upload({ getFilePath }) {
             });
             const { fileName, filePath } = res.data;
             setUploadedFile({ fileName, filePath });
+            console.log({ filePath });
             getFilePath(filePath);
             setMessage("File uploaded");
         } catch (err) {
             if (err.response.status === 500) {
-                setMessage("There was a problem with the server");
-            } else {
-                setMessage(err.response.data.msg);
+                setMessage("Error occured in the server");
             }
+            setMessage(err.response.data.msg);
         }
     }
 
     return (
-        <div>
+        <div className="form">
             {message ? <Message msg={message} /> : null}
-            <form onSubmit={e => onSubmitEvent(e)}>
+            <form onSubmit={e => onSubmitEvent(e)} method="POST">
                 <input
                     type="file"
-                    name="imageUpload"
+                    name="image"
                     id="imageUpload"
+                    accept="image/*"
                     onChange={onChange}
+                    formEncType="multipart/form-data"
                 />
-                <label htmlFor="imageUpload">{filename}</label>
-                <input type="submit" value="upload" />
+                <input type="submit" value="Upload" />
             </form>
-            {/* {uploadedFile ? (
-                <div className="row">
-                </div>
-            ) : null} */}
         </div>
     );
 }

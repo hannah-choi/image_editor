@@ -53,6 +53,7 @@ export default function Canvas({ newImagePath }) {
             .join(" ");
     };
 
+    //When effect input is changed
     const applyChange = (name, newValue) => {
         setAdjustment(
             adjustment.map(item =>
@@ -66,13 +67,6 @@ export default function Canvas({ newImagePath }) {
         contextRef.current.globalCompositeOperation = "source-over";
         // canvasFill();
         imageLoad();
-    };
-
-    const downloadImage = () => {
-        const link = document.createElement("a");
-        link.download = "image.png";
-        link.href = canvasRef.current.toDataURL("");
-        link.click();
     };
 
     const applyInstaFilter = name => {
@@ -179,6 +173,13 @@ export default function Canvas({ newImagePath }) {
         setActive(textContent);
     };
 
+    const downloadImage = () => {
+        const link = document.createElement("a");
+        link.download = "image.png";
+        link.href = canvasRef.current.toDataURL("");
+        link.click();
+    };
+
     useEffect(() => {
         setImagePath(newImagePath ? newImagePath : imagePath);
         imageRef.current.src = newImagePath ? newImagePath : imagePath;
@@ -189,7 +190,7 @@ export default function Canvas({ newImagePath }) {
     }, [imagePath, newImagePath]);
 
     return (
-        <div className="wrapper">
+        <div className="container">
             <div className="canvasWrapper">
                 <Download downloadImage={downloadImage} />
                 <img
@@ -207,7 +208,12 @@ export default function Canvas({ newImagePath }) {
             </div>
             <div className="effectWrapper">
                 {buttons.map(item => (
-                    <TabButton key={item} name={item} tabClick={tabClick} />
+                    <TabButton
+                        key={item}
+                        name={item}
+                        tabClick={tabClick}
+                        active={active}
+                    />
                 ))}
                 <div ref={thumbnails} className="features">
                     {active === "Adjustment" ? (

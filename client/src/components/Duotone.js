@@ -32,10 +32,9 @@ export default function Duotone({
                     />
                 ))}
             </div>
-            <h3>Custom</h3>
             <div className="colorButtons">
                 <div className="colorDiv">
-                    highlight
+                    <span className="colorDivName">Highlight</span>
                     <div
                         className="highlightSwatch swatch"
                         style={{
@@ -45,7 +44,7 @@ export default function Duotone({
                     ></div>
                 </div>
                 <div className="colorDiv">
-                    shadow
+                    <span className="colorDivName">Shadow</span>
                     <div
                         className="shadowSwatch swatch"
                         style={{ backgroundColor: `${duotoneColors.shadow}` }}
