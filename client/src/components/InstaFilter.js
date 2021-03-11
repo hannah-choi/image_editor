@@ -4,7 +4,7 @@ import Button from "./Button";
 
 export default function InstaFilter({ applyInstaFilter, imagePath }) {
     return (
-        <div className="thumbnails">
+        <>
             {filters.map(filter => (
                 <Button
                     key={filter.name}
@@ -13,6 +13,6 @@ export default function InstaFilter({ applyInstaFilter, imagePath }) {
                     imagePath={imagePath}
                 />
             ))}
-        </div>
+        </>
     );
 }

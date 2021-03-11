@@ -1,4 +1,3 @@
-import fileUpload from "express-fileupload";
 import React from "react";
 
 export default function File({ fileUpload }) {

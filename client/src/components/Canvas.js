@@ -5,7 +5,6 @@ import duotones from "./duotones.js";
 import Adjustment from "./Adjustment";
 import Download from "./Download";
 import TabButton from "./TabButton.js";
-import InstaFilter from "./InstaFilter.js";
 
 export default function Canvas({ newImagePath }) {
     const canvasRef = useRef(null);
@@ -64,8 +63,7 @@ export default function Canvas({ newImagePath }) {
         );
         contextRef.current.drawImage(imageRef.current, 0, 0);
         contextRef.current.filter = getFilterString(adjustment);
-        contextRef.current.globalCompositeOperation = "destination-over";
-        console.log(contextRef.current);
+        contextRef.current.globalCompositeOperation = "source-over";
         // canvasFill();
         imageLoad();
     };
@@ -113,7 +111,6 @@ export default function Canvas({ newImagePath }) {
                 highlight: selectedTone.highlight,
                 shadow: selectedTone.shadow,
             });
-            contextRef.current.save();
         }
     };
 
@@ -165,7 +162,7 @@ export default function Canvas({ newImagePath }) {
         );
     };
 
-    const buttons = ["Adjustment", "Duotone", "Insta-filter"];
+    const buttons = ["Adjustment", "Duotone"];
 
     const duotoneColorChange = (name, color) => {
         duotoneImageLoad();
@@ -215,12 +212,9 @@ export default function Canvas({ newImagePath }) {
                 <div ref={thumbnails} className="features">
                     {active === "Adjustment" ? (
                         <Adjustment
+                            imagePath={imagePath}
                             adjustment={adjustment}
                             applyChange={applyChange}
-                        />
-                    ) : active === "Insta-filter" ? (
-                        <InstaFilter
-                            imagePath={imagePath}
                             applyInstaFilter={applyInstaFilter}
                         />
                     ) : (

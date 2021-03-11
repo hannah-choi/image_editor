@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Message from "./Message";
 import axios from "axios";
 
-export default function Upload() {
+export default function Upload({ getFilePath }) {
     const [file, setFile] = useState("");
     const [filename, setFilename] = useState("Choose File");
     const [uploadedFile, setUploadedFile] = useState({});
@@ -13,7 +13,7 @@ export default function Upload() {
         setFilename(e.target.files[0].name);
     };
 
-    const onSubmit = async e => {
+    async function onSubmitEvent(e) {
         e.preventDefault();
         const formData = new FormData();
         formData.append("file", file);
@@ -26,6 +26,7 @@ export default function Upload() {
             });
             const { fileName, filePath } = res.data;
             setUploadedFile({ fileName, filePath });
+            getFilePath(filePath);
             setMessage("File uploaded");
         } catch (err) {
             if (err.response.status === 500) {
@@ -34,12 +35,12 @@ export default function Upload() {
                 setMessage(err.response.data.msg);
             }
         }
-    };
+    }
 
     return (
         <div>
             {message ? <Message msg={message} /> : null}
-            <form onSubmit={onSubmit}>
+            <form onSubmit={e => onSubmitEvent(e)}>
                 <input
                     type="file"
                     name="imageUpload"
@@ -49,12 +50,10 @@ export default function Upload() {
                 <label htmlFor="imageUpload">{filename}</label>
                 <input type="submit" value="upload" />
             </form>
-            {uploadedFile ? (
+            {/* {uploadedFile ? (
                 <div className="row">
-                    <h3>{uploadedFile.fileName}</h3>
-                    <img src={uploadedFile.filePath} alt="" />
                 </div>
-            ) : null}
+            ) : null} */}
         </div>
     );
 }
