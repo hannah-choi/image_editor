@@ -1,0 +1,71 @@
+/* #imageUpload {
+    border: 1px solid gray;
+}
+
+#imageUpload::-webkit-file-upload-button {
+    border: 1px solid black;
+    color: black;
+    padding: 5px 8px;
+    font-family: inherit;
+    background-color: #ffffff;
+}
+ */
+
+/* #imageUpload {
+     position: absolute;
+ } */
+/* 
+#imageUpload::-webkit-file-upload-button {
+    visibility: hidden;
+}
+#imageUpload::before {
+    content: "SELECT FILE";
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+
+    border: 1px solid var(--text);
+    border-radius: 20px;
+    color: var(--text);
+    padding: 8px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    letter-spacing: 2px;
+    font-size: 8pt;
+
+    outline: none;
+    -webkit-user-select: none;
+}
+#imageUpload:hover::before {
+    border-color: black;
+}
+#imageUpload:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+} */
+
+label.inputLabel input[type="file"] {
+    position: absolute;
+    top: -1000px;
+}
+
+/***** Example custom styling *****/
+.inputLabel {
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #ddd;
+    display: inline-block;
+}
+.inputLabel:hover {
+    background: #ccc;
+}
+.inputLabel:active {
+    background: #ccf;
+}
+.inputLabel :invalid + span {
+    color: #a44;
+}
+.inputLabel :valid + span {
+    color: #4a4;
+}

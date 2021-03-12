@@ -9,8 +9,8 @@ const ToneButtonImg = styled.div`
 
     /* Setup the fixed dimensions */
     position: relative;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: ${props => (props.size.height / props.size.width) * 98}px;
 
     &::before {
         background-color: ${props => props.highlight};

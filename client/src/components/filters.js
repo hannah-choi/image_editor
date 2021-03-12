@@ -1,5 +1,15 @@
 const filters = [
-    { name: "original", filter: "none", overlays: [] },
+    {
+        name: "original",
+        filter: [
+            { property: "brightness", value: 100 },
+            { property: "contrast", value: 100 },
+            { property: "saturate", value: 100 },
+            { property: "hue-rotate", value: 0 },
+            { property: "sepia", value: 0 },
+        ],
+        overlays: [],
+    },
     {
         name: "aden",
         filter: [
@@ -43,7 +53,7 @@ const filters = [
         ],
         overlays: [
             {
-                background: "rgba(243, 106, 188, 0.3)",
+                backgroundColor: "rgba(243, 106, 188, 0.3)",
                 mixBlendMode: "screen",
             },
         ],
@@ -95,7 +105,7 @@ const filters = [
         ],
         overlays: [
             {
-                backgroundColor: "#e6e6fa",
+                backgroundColor: "rgba(230, 230, 250, 1)",
                 mixBlendMode: "soft-light",
             },
         ],

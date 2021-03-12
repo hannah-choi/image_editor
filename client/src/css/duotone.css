@@ -1,0 +1,30 @@
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid green; */
+    justify-content: space-between;
+    z-index: 1;
+    position: relative;
+}
+
+.thumbnails button p {
+    font-size: 0.6rem;
+    font-family: inherit;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.thumbnails button img {
+    max-width: 100%;
+    z-index: 0;
+}
+
+.thumbnails button {
+    width: 30%;
+    height: auto;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    background-color: transparent;
+}

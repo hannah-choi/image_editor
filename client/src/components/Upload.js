@@ -42,17 +42,20 @@ export default function Upload({ getFilePath }) {
 
     return (
         <div className="form">
-            {message ? <Message msg={message} /> : null}
+            {file && message ? <Message msg={message} /> : null}
             <form onSubmit={e => onSubmitEvent(e)} method="POST">
-                <input
-                    type="file"
-                    name="image"
-                    id="imageUpload"
-                    accept="image/*"
-                    onChange={onChange}
-                    formEncType="multipart/form-data"
-                />
-                <input type="submit" value="Upload" />
+                <label className="inputLabel">
+                    <input
+                        type="file"
+                        name="image"
+                        id="imageUpload"
+                        accept="image/*"
+                        onChange={onChange}
+                        formEncType="multipart/form-data"
+                    />
+                    <span>SELECT FILE</span>
+                </label>
+                <input type="submit" value="UPLOAD" />
             </form>
         </div>
     );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./css/App.css";
 import Canvas from "./components/Canvas";
 import Upload from "./components/Upload";
 
@@ -12,8 +12,8 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Image editor</h1>
             <div className="wrapper">
+                <h2>Image editor</h2>
                 <Upload getFilePath={getFilePath} />
                 <Canvas newImagePath={objectURL} />
             </div>

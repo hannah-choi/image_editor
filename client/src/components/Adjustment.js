@@ -18,6 +18,7 @@ export default function Adjustment({
                         applyChange={applyChange}
                     />
                 ))}
+                <hr />
             </div>
             <InstaFilter
                 applyInstaFilter={applyInstaFilter}

@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+@import "./slidebar.css";
+@import "./duotone.css";
+@import "./imageUpload.css";
 
 * {
     box-sizing: border-box;
@@ -6,12 +9,22 @@
 
 body {
     box-sizing: border-box;
-    font-family: "Montserrat";
+    font-family: "Lato";
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
+}
+
+:root {
+    --bg: #121212;
+    --menu: #181818;
+    --secondary: #282828;
+    --text: #fff;
+    --body: #b3b3b3;
+    --middle: #818181;
 }
 
 .App {
@@ -20,89 +33,53 @@ body {
 
 .button,
 input[type="submit"] {
-    border: 1px solid black;
-    color: black;
-    padding: 6px 8px;
+    border: 1px solid var(--text);
+    border-radius: 20px;
+    color: var(--text);
+    padding: 8px 20px;
     font-family: inherit;
-    background-color: #ffffff;
-}
-
-#imageUpload {
-    border: 1px solid gray;
-}
-
-#imageUpload::-webkit-file-upload-button {
-    border: 1px solid black;
-    color: black;
-    padding: 5px 8px;
-    font-family: inherit;
-    background-color: #ffffff;
+    cursor: pointer;
+    background-color: transparent;
+    letter-spacing: 2px;
+    font-size: 8pt;
 }
 
 .wrapper {
     position: relative;
-    width: 1000px;
-    /* border: 1px solid magenta; */
+    width: 900px;
+    padding: 30px;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 .container {
-    /* border: 1px solid green; */
+    border: 1px solid green;
     width: 100%;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .canvasWrapper {
-    min-width: 50%;
-    max-width: 80%;
+    width: 55%;
     position: relative;
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
 }
 
 .form {
     width: 50%;
-    /* border: 1px solid salmon; */
     margin-bottom: 20px;
 }
 
 .effectWrapper {
     padding: 0 20px 0 30px;
     position: relative;
-    width: 30%;
-    /* border: 1px solid cyan; */
+    width: 45%;
     position: relative;
 }
 
 .features {
     position: relative;
-}
-
-.thumbnails {
-    display: flex;
-    flex-wrap: wrap;
-    /* border: 1px solid green; */
-    justify-content: space-between;
-    z-index: 1;
-    position: relative;
-}
-
-.thumbnails button {
-    width: 30%;
-}
-
-.thumbnails button p {
-    font-size: 0.7rem;
-}
-
-.thumbnails button img {
-    max-width: 100%;
-    z-index: 0;
-}
-
-.thumbnails button {
-    outline: 0;
-    border: none;
-    background-color: white;
 }
 
 figure {
@@ -113,6 +90,7 @@ figure {
 .previewImage,
 canvas {
     position: absolute;
+    max-height: 100%;
     max-width: 100%;
     top: 0;
     left: 50%;
@@ -125,33 +103,12 @@ input {
     font-family: inherit;
 }
 
-.duotonePreview {
-    min-height: 80px;
+h2 {
+    margin: 0 0 20px 0;
 }
 
 h3 {
     margin: 10px 0;
-}
-
-.slidebar {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.slidebar .name {
-    flex-basis: 45%;
-}
-
-.slidebar .input {
-    flex-basis: 35%;
-}
-
-.slidebar .number {
-    margin-left: 5px;
-    flex-basis: 15%;
 }
 
 .colorButtons {
@@ -161,7 +118,12 @@ h3 {
 .effects,
 .colorButtons {
     width: 100%;
-    margin: 15px 0;
+    margin: 20px 0 0 0;
+}
+
+.effects hr {
+    margin: 25px 0 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .colorButtons button {

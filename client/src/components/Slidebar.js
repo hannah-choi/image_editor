@@ -16,6 +16,7 @@ export default function Slidebar({ option, applyChange }) {
                         ? 360
                         : 150
                 }
+                value={option.value}
                 defaultValue={option.value}
                 onInput={e => {
                     applyChange(e.target.name, e.target.value);

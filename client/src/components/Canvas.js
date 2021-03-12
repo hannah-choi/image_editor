@@ -73,19 +73,13 @@ export default function Canvas({ newImagePath }) {
         const selectedFilter = filters.find(filter => filter.name === name);
         setCanvas();
         clearCanvas();
-        if (selectedFilter.name === "original") {
-            contextRef.current.filter = "none";
-        } else {
-            contextRef.current.filter = getFilterString(selectedFilter.filter);
-            setAdjustment(
-                selectedFilter.filter.map(item =>
-                    item.property === name
-                        ? { ...item, value: item.value }
-                        : item
-                )
-            );
-        }
+        contextRef.current.filter = getFilterString(selectedFilter.filter);
         imageLoad();
+        setAdjustment(
+            selectedFilter.filter.map(item =>
+                item.property === name ? { ...item, value: item.value } : item
+            )
+        );
         selectedFilter.overlays.forEach(overlay => {
             contextRef.current.globalCompositeOperation = overlay.mixBlendMode;
             contextRef.current.fillStyle = overlay.backgroundColor;

@@ -7,7 +7,7 @@ export default function Download({ downloadImage }) {
             className="button"
             onClick={() => downloadImage()}
         >
-            Download
+            DOWNLOAD
         </button>
     );
 }
