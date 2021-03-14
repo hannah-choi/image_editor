@@ -44,23 +44,31 @@
 } */
 
 label.inputLabel input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
     position: absolute;
-    top: -1000px;
+    z-index: -1;
 }
 
-/***** Example custom styling *****/
 .inputLabel {
-    border: 2px solid #aaa;
-    border-radius: 4px;
-    padding: 2px 5px;
-    margin: 2px;
-    background: #ddd;
+    border: 1px solid var(--button);
+    font-family: inherit;
+    border-radius: 20px;
+    padding: 8px 20px;
+    background: transparent;
+    cursor: pointer;
     display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .inputLabel:hover {
-    background: #ccc;
+    background: var(--text);
+    color: var(--bg);
 }
-.inputLabel:active {
+/* .inputLabel:active {
     background: #ccf;
 }
 .inputLabel :invalid + span {
@@ -68,4 +76,4 @@ label.inputLabel input[type="file"] {
 }
 .inputLabel :valid + span {
     color: #4a4;
-}
+} */

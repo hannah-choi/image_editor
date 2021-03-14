@@ -18,8 +18,8 @@ const Message = ({ msg }) => {
     );
 };
 
-Message.propTypes = {
-    msg: PropTypes.string.isRequired,
-};
+// Message.propTypes = {
+//     msg: PropTypes.string.isRequired,
+// };
 
 export default Message;

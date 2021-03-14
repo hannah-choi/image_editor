@@ -16,6 +16,10 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
+
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 :root {
@@ -23,6 +27,7 @@ body {
     --menu: #181818;
     --secondary: #282828;
     --text: #fff;
+    --button: #aaa;
     --body: #b3b3b3;
     --middle: #818181;
 }
@@ -31,9 +36,14 @@ body {
     position: relative;
 }
 
+button:focus,
+input[type="submit"]:focus {
+    outline: none;
+}
+
 .button,
 input[type="submit"] {
-    border: 1px solid var(--text);
+    border: 1px solid var(--button);
     border-radius: 20px;
     color: var(--text);
     padding: 8px 20px;
@@ -42,6 +52,12 @@ input[type="submit"] {
     background-color: transparent;
     letter-spacing: 2px;
     font-size: 8pt;
+}
+
+.button:hover,
+input[type="submit"]:hover {
+    background: var(--text);
+    color: var(--bg);
 }
 
 .wrapper {
@@ -53,7 +69,7 @@ input[type="submit"] {
 }
 
 .container {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -63,7 +79,7 @@ input[type="submit"] {
 .canvasWrapper {
     width: 55%;
     position: relative;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }
 
 .form {
@@ -167,13 +183,17 @@ h3 {
 }
 
 .message {
-    visibility: hidden;
+    opacity: 0;
     width: 100%;
-    background-color: #ddd;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 5px;
+    font-family: inherit;
+    font-size: 0.7rem;
 }
 
 .visible {
-    visibility: visible;
+    opacity: 1;
 }
 
 button#download {
@@ -184,13 +204,21 @@ button#download {
 
 .tab {
     padding: 5px 10px;
-    border: 1px solid gray;
-    background-color: white;
+    background-color: var(--body);
+    color: var(--middle);
+    padding: 8px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: 2px;
+    font-size: 9pt;
+    text-transform: uppercase;
+    border: none;
 }
 
 .tab.active {
-    background-color: black;
+    background-color: var(--bg);
     color: white;
+    font-weight: 700;
 }
 
 span.colorDivName {
