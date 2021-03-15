@@ -5,6 +5,7 @@
     justify-content: space-between;
     z-index: 1;
     position: relative;
+    padding-top: 20px;
 }
 
 .thumbnails button p {
@@ -28,3 +29,31 @@
     border: none;
     background-color: transparent;
 }
+
+.colorButtons {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.colorButtons .colorDiv {
+    flex-basis: 50%;
+}
+
+.swatch {
+    width: 120px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.effects,
+.colorButtons {
+    width: 100%;
+    /* margin: 20px 0 0 0; */
+}
+
+/* .colorButtons button {
+    background-color: gray;
+} */
