@@ -53,19 +53,19 @@ label.inputLabel input[type="file"] {
 }
 
 .inputLabel {
-    border: 1px solid var(--button);
     font-family: inherit;
     border-radius: 20px;
     padding: 8px 20px;
-    background: transparent;
     cursor: pointer;
     display: inline-block;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    background: var(--point);
 }
+
 .inputLabel:hover {
-    background: var(--text);
+    background: var(--point2);
     color: var(--bg);
 }
 /* .inputLabel:active {

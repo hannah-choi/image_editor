@@ -5,10 +5,12 @@ const Message = ({ msg }) => {
     const msgRef = useRef(null);
 
     useEffect(() => {
-        msgRef.current.classList.add("visible");
-        setTimeout(() => {
-            msgRef.current.classList.remove("visible");
-        }, 3000);
+        if (msg) {
+            msgRef.current.classList.add("visible");
+            setTimeout(() => {
+                msgRef.current.classList.remove("visible");
+            }, 3000);
+        }
     }, [msg]);
 
     return (

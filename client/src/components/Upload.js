@@ -39,10 +39,16 @@ export default function Upload({ getFilePath }) {
             if (err.response.status === 500) {
                 setMessage("Error occured in the server");
             }
-            console.log(err.response.data.msg);
             setMessage(err.response.data.msg);
         }
     }
+
+    const getFileName = () => {
+        const ext = filename.split(".").pop();
+        const name =
+            ext === "jpeg" ? filename.slice(0, -3) : filename.slice(0, -2);
+        return name.length < 12 ? filename : name.slice(0, 12) + "..." + ext;
+    };
 
     return (
         <div className="form">
@@ -65,19 +71,11 @@ export default function Upload({ getFilePath }) {
                         }}
                         onMouseOut={e => {
                             if (file && filename) {
-                                const ext = filename.split(".").pop();
-                                const name =
-                                    ext === "jpeg"
-                                        ? filename.slice(0, -3)
-                                        : filename.slice(0, -2);
-                                e.target.textContent =
-                                    name.length < 12
-                                        ? filename
-                                        : name.slice(0, 12) + "..." + ext;
+                                e.target.textContent = getFileName();
                             }
                         }}
                     >
-                        {filename ? filename : "Choose File"}
+                        {filename ? getFileName() : "Choose File"}
                     </span>
                 </label>
                 {file && filename && <input type="submit" value="UPLOAD" />}
