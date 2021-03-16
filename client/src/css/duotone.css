@@ -1,7 +1,6 @@
 .thumbnails {
     display: flex;
     flex-wrap: wrap;
-    /* border: 1px solid green; */
     justify-content: space-between;
     z-index: 1;
     position: relative;
@@ -38,6 +37,10 @@
     margin-top: 20px;
 }
 
+span.colorDivName {
+    margin-bottom: 10px;
+}
+
 .colorButtons .colorDiv {
     flex-basis: 50%;
 }
@@ -51,9 +54,19 @@
 .effects,
 .colorButtons {
     width: 100%;
-    /* margin: 20px 0 0 0; */
 }
 
-/* .colorButtons button {
-    background-color: gray;
-} */
+.block-picker.colorpicker {
+    position: absolute !important;
+    box-sizing: content-box;
+    border: 1px solid #ddd;
+    z-index: 10;
+}
+
+.block-picker.colorpicker.highlight {
+    left: -50px;
+}
+
+.block-picker.colorpicker.shadow {
+    left: 150px;
+}

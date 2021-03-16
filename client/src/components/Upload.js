@@ -12,7 +12,7 @@ export default function Upload({ getFilePath }) {
         msg: null,
     });
     const fileRef = useRef(null);
-    const messageRef = useRef(message);
+    const messageRef = useRef(message); //to use state inside of setTimeout()
     messageRef.current = message;
 
     const onChange = e => {
@@ -41,7 +41,7 @@ export default function Upload({ getFilePath }) {
                 const { fileName, filePath } = res.data;
                 setUploadedFile({ fileName, filePath });
                 getFilePath(filePath);
-                setMessage({ id: v4(), msg: "File has uploaded" });
+                setMessage({ id: v4(), msg: "File uploaded" });
             } catch (err) {
                 if (err.response.status === 500) {
                     setMessage({
@@ -63,7 +63,7 @@ export default function Upload({ getFilePath }) {
         const ext = filename.split(".").pop();
         const name =
             ext === "jpeg" ? filename.slice(0, -3) : filename.slice(0, -2);
-        return name.length < 12 ? filename : name.slice(0, 12) + "..." + ext;
+        return name.length < 16 ? filename : name.slice(0, 16) + "..." + ext;
     };
 
     return (
@@ -82,7 +82,7 @@ export default function Upload({ getFilePath }) {
                     <span
                         onMouseOver={e => {
                             if (file && filename) {
-                                e.target.textContent = "Change file";
+                                e.target.textContent = "Click to Change file";
                             }
                         }}
                         onMouseOut={e => {
@@ -91,7 +91,7 @@ export default function Upload({ getFilePath }) {
                             }
                         }}
                     >
-                        {filename ? getFileName() : "Choose File"}
+                        {filename ? getFileName() : "Choose File (Limit: 1mb)"}
                     </span>
                 </label>
                 <input type="submit" value="UPLOAD" />

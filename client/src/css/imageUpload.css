@@ -10,7 +10,8 @@ label.inputLabel input[type="file"] {
 .inputLabel {
     font-family: inherit;
     border-radius: 20px 0px 0px 20px;
-    padding: 8px 100px 8px 20px;
+    padding: 8px 20px;
+    width: 300px;
     cursor: pointer;
     display: inline-block;
     font-size: 0.7rem;
@@ -28,5 +29,5 @@ label.inputLabel input[type="file"] {
 input[type="submit"] {
     z-index: 10;
     position: absolute;
-    left: 180px;
+    left: 230px;
 }

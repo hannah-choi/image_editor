@@ -13,7 +13,7 @@ export default function Canvas({ newImagePath }) {
     const thumbnails = useRef(null);
     const [imagePath, setImagePath] = useState("./uploads/default.jpeg");
     const [canvasSize, setCanvasSize] = useState({});
-    const [active, setActive] = useState("Duotone");
+    const [active, setActive] = useState("Adjustment");
     const [duotoneColors, setDuotoneColors] = useState({
         highlight: "#fff",
         shadow: "#fff",
@@ -69,6 +69,7 @@ export default function Canvas({ newImagePath }) {
         imageLoad();
     };
 
+    //apply instagram filter
     const applyInstaFilter = name => {
         const selectedFilter = filters.find(filter => filter.name === name);
         setCanvas();
@@ -87,6 +88,7 @@ export default function Canvas({ newImagePath }) {
         });
     };
 
+    //apply duotone effect
     const applyDuotone = name => {
         clearCanvas();
         const selectedTone = duotones.find(duotone => duotone.name === name);
@@ -102,6 +104,7 @@ export default function Canvas({ newImagePath }) {
         }
     };
 
+    // duotone effect function
     const duotoneFilter = (highlight, shadow) => {
         contextRef.current.globalCompositeOperation = "multiply";
         contextRef.current.fillStyle = highlight;
@@ -126,6 +129,7 @@ export default function Canvas({ newImagePath }) {
         contextRef.current.clearRect(0, 0, canvasSize.width, canvasSize.height);
     };
 
+    //initial image load when duotone is selected
     const duotoneImageLoad = () => {
         setCanvas();
         contextRef.current.filter = "grayscale(1)";
@@ -139,6 +143,7 @@ export default function Canvas({ newImagePath }) {
         contextRef.current.filter = "grayscale(0)";
     };
 
+    //initial image load
     const imageLoad = () => {
         setCanvas();
         contextRef.current.drawImage(
@@ -152,6 +157,7 @@ export default function Canvas({ newImagePath }) {
 
     const buttons = ["Adjustment", "Duotone"];
 
+    //duotone custom color change
     const duotoneColorChange = (name, color) => {
         duotoneImageLoad();
         if (name === "highlight") {
@@ -199,6 +205,13 @@ export default function Canvas({ newImagePath }) {
                     width={canvasSize.width}
                     height={canvasSize.height}
                 />
+                {imagePath === "./uploads/default.jpeg" ? (
+                    <small className="credit">
+                        Photo credit: https://unsplash.com/@kabofoods
+                    </small>
+                ) : (
+                    ""
+                )}
             </div>
             <div className="effectWrapper">
                 {buttons.map(item => (
