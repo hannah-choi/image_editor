@@ -4,7 +4,7 @@ An image editor app built with React & Express.
 
 ## Wireframe
 
-<img width="900" alt="Screenshot 2021-03-16 at 17 58 15" src="https://user-images.githubusercontent.com/62843726/111363144-95fc9f00-8687-11eb-991b-12ab8410288e.png" border="1">
+![wireframe1](https://user-images.githubusercontent.com/62843726/111366990-22a95c00-868c-11eb-8065-ffa862bb04dd.png)
 
 ## Screenshot
 
