@@ -229,6 +229,7 @@ export default function Canvas({ newImagePath }) {
                             adjustment={adjustment}
                             applyChange={applyChange}
                             applyInstaFilter={applyInstaFilter}
+                            getFilterString={getFilterString}
                         />
                     ) : (
                         <Duotone

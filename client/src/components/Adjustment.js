@@ -7,6 +7,7 @@ export default function Adjustment({
     applyChange,
     imagePath,
     applyInstaFilter,
+    getFilterString,
 }) {
     return (
         <div className="thumbnails">
@@ -23,6 +24,7 @@ export default function Adjustment({
             <InstaFilter
                 applyInstaFilter={applyInstaFilter}
                 imagePath={imagePath}
+                getFilterString={getFilterString}
             />
         </div>
     );
