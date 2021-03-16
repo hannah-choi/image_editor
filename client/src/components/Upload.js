@@ -1,13 +1,19 @@
 import React, { useState, useRef } from "react";
 import Message from "./Message";
 import axios from "axios";
+import { v4 } from "uuid";
 
 export default function Upload({ getFilePath }) {
     const [file, setFile] = useState("");
     const [filename, setFilename] = useState("");
     const [uploadedFile, setUploadedFile] = useState({});
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState({
+        id: null,
+        msg: null,
+    });
     const fileRef = useRef(null);
+    const messageRef = useRef(message);
+    messageRef.current = message;
 
     const onChange = e => {
         if (!e.target || e.target.files.length === 0) {
@@ -21,7 +27,7 @@ export default function Upload({ getFilePath }) {
         e.preventDefault();
 
         if (!file || !filename) {
-            setMessage("No file uploaded");
+            setMessage({ id: v4(), msg: "Error: No file uploaded" });
         } else {
             const formData = new FormData();
             formData.append("image", file);
@@ -35,12 +41,20 @@ export default function Upload({ getFilePath }) {
                 const { fileName, filePath } = res.data;
                 setUploadedFile({ fileName, filePath });
                 getFilePath(filePath);
-                setMessage("File uploaded");
+                setMessage({ id: v4(), msg: "File has uploaded" });
             } catch (err) {
                 if (err.response.status === 500) {
-                    setMessage("Error occured in the server");
+                    setMessage({
+                        id: v4(),
+                        msg: "An error occured in the server",
+                    });
                 }
-                setMessage(err.response.data.msg);
+                if (err.response.data.msg.message) {
+                    setMessage({
+                        id: v4(),
+                        msg: err.response.data.msg.message,
+                    });
+                }
             }
         }
     }
@@ -54,7 +68,7 @@ export default function Upload({ getFilePath }) {
 
     return (
         <div className="form">
-            <Message msg={file && message ? message : null} />
+            <Message msg={messageRef.current} />
             <form onSubmit={e => onSubmitEvent(e)} method="POST">
                 <label ref={fileRef} className="inputLabel">
                     <input

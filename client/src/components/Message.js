@@ -1,27 +1,25 @@
-import React, { useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 
-const Message = ({ msg }) => {
-    const msgRef = useRef(null);
+export default function Message({ msg }) {
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
-        if (msg) {
-            msgRef.current.classList.add("visible");
-            setTimeout(() => {
-                msgRef.current.classList.remove("visible");
-            }, 3000);
+        if (!msg.msg) {
+            setShow(false);
+            return;
         }
-    }, [msg]);
+        setShow(true);
+        const timer = setTimeout(() => {
+            setShow(false);
+        }, 3000);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [msg.id]);
 
-    return (
-        <div ref={msgRef} className="message">
-            {msg}
-        </div>
-    );
-};
+    if (!show) {
+        return null;
+    }
 
-// Message.propTypes = {
-//     msg: PropTypes.string.isRequired,
-// };
-
-export default Message;
+    return <div className={`message`}>{msg.msg}</div>;
+}

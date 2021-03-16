@@ -170,7 +170,7 @@ h3 {
 }
 
 .message {
-    opacity: 0;
+    opacity: 1;
     width: 330px;
     background-color: var(--secondary);
     border-radius: 20px;

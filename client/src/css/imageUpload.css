@@ -21,8 +21,8 @@ label.inputLabel input[type="file"] {
 }
 
 .inputLabel:hover {
-    background: var(--point2);
-    color: var(--bg);
+    background: var(--text);
+    color: var(--point);
 }
 
 input[type="submit"] {
