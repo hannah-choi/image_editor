@@ -15,31 +15,33 @@ export default function Upload({ getFilePath }) {
         }
         setFile(e.target.files[0]);
         setFilename(e.target.files[0].name);
-        if (filename) {
-            fileRef.current.style.border = "none";
-        }
     };
 
     async function onSubmitEvent(e) {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("image", file);
 
-        try {
-            const res = await axios.post("/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            const { fileName, filePath } = res.data;
-            setUploadedFile({ fileName, filePath });
-            getFilePath(filePath);
-            setMessage("File uploaded");
-        } catch (err) {
-            if (err.response.status === 500) {
-                setMessage("Error occured in the server");
+        if (!file || !filename) {
+            setMessage("No file uploaded");
+        } else {
+            const formData = new FormData();
+            formData.append("image", file);
+
+            try {
+                const res = await axios.post("/upload", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                const { fileName, filePath } = res.data;
+                setUploadedFile({ fileName, filePath });
+                getFilePath(filePath);
+                setMessage("File uploaded");
+            } catch (err) {
+                if (err.response.status === 500) {
+                    setMessage("Error occured in the server");
+                }
+                setMessage(err.response.data.msg);
             }
-            setMessage(err.response.data.msg);
         }
     }
 
@@ -78,7 +80,7 @@ export default function Upload({ getFilePath }) {
                         {filename ? getFileName() : "Choose File"}
                     </span>
                 </label>
-                {file && filename && <input type="submit" value="UPLOAD" />}
+                <input type="submit" value="UPLOAD" />
             </form>
         </div>
     );
