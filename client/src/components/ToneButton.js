@@ -1,4 +1,5 @@
 import React from "react";
+import duotones from "./duotones";
 import ToneButtonImg from "./ToneButtonImg";
 
 export default function ToneButton({
@@ -7,17 +8,23 @@ export default function ToneButton({
     canvasSize,
     imagePath,
 }) {
+    const render = (
+        <ToneButtonImg
+            className="duotonePreview"
+            src={imagePath}
+            highlight={duotone.highlight}
+            shadow={duotone.shadow}
+            size={canvasSize}
+            alt={duotone.name}
+        />
+    );
+
+    const original = <img src={imagePath} alt="Original" />;
+
     return (
         <button onClick={() => applyDuotone(duotone.name)}>
             <p>{duotone.name}</p>
-            <ToneButtonImg
-                className="duotonePreview"
-                src={imagePath}
-                highlight={duotone.highlight}
-                shadow={duotone.shadow}
-                size={canvasSize}
-                alt={duotone.name}
-            />
+            {duotone.name === "Original" ? original : render}
         </button>
     );
 }

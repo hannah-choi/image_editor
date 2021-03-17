@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const ToneButtonImg = styled.div`
-    background-image: url(${props => props.src});
+    background-image: linear-gradient(black, black), url(${props => props.src});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-blend-mode: saturation;
 
     /* Setup the fixed dimensions */
     position: relative;
