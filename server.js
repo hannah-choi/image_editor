@@ -3,6 +3,11 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
+const app = express();
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(cors());
+
 //Storage Engine
 const storage = multer.diskStorage({
     destination: "./client/public/uploads/",
@@ -13,11 +18,6 @@ const storage = multer.diskStorage({
         );
     },
 });
-
-app.use(express.static(path.join(__dirname, "client", "build")));
-
-const app = express();
-app.use(cors());
 
 const upload = multer({
     storage: storage,
