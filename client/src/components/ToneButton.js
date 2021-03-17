@@ -1,5 +1,4 @@
 import React from "react";
-import duotones from "./duotones";
 import ToneButtonImg from "./ToneButtonImg";
 
 export default function ToneButton({
