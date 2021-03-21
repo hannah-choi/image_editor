@@ -39,3 +39,7 @@ An image editor app built with React & Express.
 
 - <a href="https://casesandberg.github.io/react-color/" target="_blank">React Color</a>
 - <a href="https://una.im/CSSgram/" target="_blank">CSS Gram</a>
+
+# Dependencies
+
+- <a href="https://www.npmjs.com/package/multer" target="_blank">Multer</a>
