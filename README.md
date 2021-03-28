@@ -2,7 +2,6 @@
 
 An image editor app built with React & Express.
 
-## Screenshot
 
 <img width="900" alt="Screenshot 2021-03-16 at 19 06 38" src="https://user-images.githubusercontent.com/62843726/111366683-bb8ba780-868b-11eb-9c64-c4c9e85e1a55.png">
 
@@ -40,3 +39,7 @@ An image editor app built with React & Express.
 
 - <a href="https://casesandberg.github.io/react-color/" target="_blank">React Color</a>
 - <a href="https://una.im/CSSgram/" target="_blank">CSS Gram</a>
+
+# Dependencies
+
+- <a href="https://www.npmjs.com/package/multer" target="_blank">Multer</a>
