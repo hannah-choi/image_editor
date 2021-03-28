@@ -207,7 +207,7 @@ export default function Canvas({ newImagePath }) {
                 />
                 {imagePath === "./uploads/default.jpeg" ? (
                     <small className="credit">
-                        Photo credit: https://unsplash.com/@kabofoods
+                        Photo credit: unsplash @kabofoods
                     </small>
                 ) : (
                     ""

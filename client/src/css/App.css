@@ -7,6 +7,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #121926;
+    --secondary: #272f3d;
+    --text: #e0e2e4;
+    --point: #583be1;
+    --point2: #7459ff;
+    --middle: #818181;
+}
+
 body {
     box-sizing: border-box;
     font-family: "Lato";
@@ -16,19 +25,10 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
-
+    background-color: var(--secondary);
     letter-spacing: 2px;
     font-size: 0.8rem;
     text-transform: uppercase;
-}
-
-:root {
-    --bg: #121926;
-    --secondary: #272f3d;
-    --text: #e0e2e4;
-    --point: #583be1;
-    --point2: #7459ff;
-    --middle: #818181;
 }
 
 .App {
@@ -66,6 +66,7 @@ input[type="submit"]:hover {
     padding: 30px;
     background-color: var(--bg);
     color: var(--text);
+    border-radius: 10px;
 }
 
 .container {
@@ -200,15 +201,17 @@ button#download {
     font-size: 9pt;
     text-transform: uppercase;
     border: none;
+    border-radius: 5px 5px 0 0;
 }
 
 .tab.active {
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--point2);
     font-weight: 700;
 }
 
 footer {
+    color: var(--text);
     font-size: 8pt;
     display: flex;
     justify-content: space-between;
@@ -224,13 +227,13 @@ footer a {
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    color: var(--secondary);
+    color: var(--text);
 }
 
 footer a:hover {
-    color: var(--point);
+    color: var(--point2);
 }
 
 footer .github {
-    fill: var(--point);
+    fill: var(--point2);
 }
