@@ -207,3 +207,30 @@ button#download {
     color: var(--text);
     font-weight: 700;
 }
+
+footer {
+    font-size: 8pt;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .secondary {
+    width: 200px;
+}
+
+footer a {
+    width: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+footer a:hover {
+    color: var(--point);
+}
+
+footer .github {
+    fill: var(--point);
+}
